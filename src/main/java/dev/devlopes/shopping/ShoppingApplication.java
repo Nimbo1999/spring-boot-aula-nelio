@@ -8,8 +8,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import dev.devlopes.shopping.domain.Categoria;
+import dev.devlopes.shopping.domain.Cidade;
+import dev.devlopes.shopping.domain.Estado;
 import dev.devlopes.shopping.domain.Produto;
 import dev.devlopes.shopping.repositories.CategoriaRepository;
+import dev.devlopes.shopping.repositories.CidadeRepository;
+import dev.devlopes.shopping.repositories.EstadoRepository;
 import dev.devlopes.shopping.repositories.ProdutoRepository;
 
 @SpringBootApplication
@@ -17,9 +21,15 @@ public class ShoppingApplication implements CommandLineRunner {
 
 	@Autowired
 	private CategoriaRepository catRepo;
-	
+
 	@Autowired
 	private ProdutoRepository prodRepo;
+
+	@Autowired
+	private CidadeRepository cidRepo;
+
+	@Autowired
+	private EstadoRepository estRepo;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ShoppingApplication.class, args);
@@ -48,6 +58,20 @@ public class ShoppingApplication implements CommandLineRunner {
 		
 		catRepo.saveAll(Arrays.asList(cat1, cat2));
 		prodRepo.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
+		
+		Estado est1 = new Estado(null, "Brasília");
+		Estado est2 = new Estado(null, "Goiás");
+		
+		Cidade c1 = new Cidade(null, "Arniqueiras", est1);
+		Cidade c2 = new Cidade(null, "Ceilândia", est1);
+		Cidade c3 = new Cidade(null, "Águas Lindas", est2);
+		Cidade c4 = new Cidade(null, "Edilândia", est2);
+		
+		est1.getCidades().addAll(Arrays.asList(c1, c2));
+		est2.getCidades().addAll(Arrays.asList(c3, c4));
+		
+		estRepo.saveAll(Arrays.asList(est1, est2));
+		cidRepo.saveAll(Arrays.asList(c1, c2, c3, c4));
 	}
 
 }
