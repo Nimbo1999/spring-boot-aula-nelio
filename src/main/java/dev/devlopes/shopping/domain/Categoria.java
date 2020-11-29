@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 @Entity
-public class Categorias implements Serializable {
+public class Categoria implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -16,9 +16,9 @@ public class Categorias implements Serializable {
 	private Integer id;
 	private String nome;
 	
-	public Categorias() {}
+	public Categoria() {}
 	
-	public Categorias(Integer id, String nome) {
+	public Categoria(Integer id, String nome) {
 		this.id = id;
 		this.nome = nome;
 	}
@@ -55,7 +55,7 @@ public class Categorias implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Categorias other = (Categorias) obj;
+		Categoria other = (Categoria) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
