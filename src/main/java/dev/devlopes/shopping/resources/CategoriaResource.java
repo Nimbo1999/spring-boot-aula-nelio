@@ -1,8 +1,5 @@
 package dev.devlopes.shopping.resources;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,15 +18,8 @@ public class CategoriaResource {
 	private CategoriaService service;
 
 	@RequestMapping(method=RequestMethod.GET)
-	public List<Categoria> listar() {
-		Categoria cat1 = new Categoria(1, "Jogos");
-		Categoria cat2 = new Categoria(2, "Informatica");
-		
-		List<Categoria> lista = new ArrayList<Categoria>();
-		lista.add(cat1);
-		lista.add(cat2);
-		
-		return lista;
+	public ResponseEntity<?> listar() {
+		return ResponseEntity.ok(service.buscarTodas());
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
